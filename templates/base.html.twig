@@ -1,19 +1,163 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/starter-template/">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    <!-- TOP HEADER -->
+    <header>
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links float-left">
+					<li><a href="#"><i class="bi bi-telephone-fill"></i> +84999-99-99-99</a></li>
+					<li><a href="#"><i class="bi bi-envelope"></i> ldtshop@email.com</a></li>
+					<li><a href="#"><i class="bi bi-geo-alt-fill"></i> Can Tho</a></li>
+					<li><a href="#"><i class="bi bi-facebook"></i>Facebook</a></li>
+				</ul>
+                <ul class="header-links float-right">
+                    <li><a href="#"><i class="bi bi-person-fill"></i> Login</a></li>
+					<li><a href="#"><i class="bi bi-person"></i> Register</a></li>
+                </ul>
+			</div>
+		</div>
+    </header>
+		<!-- /TOP HEADER -->
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="/images/logo_size.jpg" alt="logo" width="120px" height="80px"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color:black">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color:black">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color:black">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="d-flex" action="search_product.php" method="POST">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Search_product" required>
+                            <button class="btn btn-outline-secondary" name="Search_button" type="submit">Search</button>
+                            <!-- <input type="submit" value="Search" class="btn btn-outline-secondary"> -->
+                        </form>
+                    </li>
+                </ul>
+
+                <div class="navbar-nav ms-auto">
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">{{ flash_message }}</div>
+            {% endfor %}
+            {% for flash_message in app.session.flashBag.get('error') %}
+                <div class="alert alert-danger">{{ flash_message }}</div>
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+</div><!-- /.container -->
+
+    {% block javascripts %}{% endblock %}
+    {% block footer %}
+        <footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-4 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">About Us</h3>
+							<p style="text-align:justify;">LDTShop put our continued success down to knowing
+                             what consumers and businesses need and having an extensive 
+                             range of the best phone for customers. LDTShop is committed
+                              to providing excellent customer service and we aim to provide
+                             accurate and useful product advice to customers through our website.</p>
+						</div>
+					</div>
+
+					{# <div class="clearfix visible-xs"></div> #}
+
+					<div class="col-md-4 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">User</h3>
+							<ul class="footer-links">
+								{# <li><a href="?ID=profile&ma=<?php echo $_SESSION['TaiKhoan']; ?>">Tài Khoản</a></li> #}
+                                {# <li><a href="?ID=Giohang">Thông Tin Giỏ Hàng</a></li> #}
+                                <li><a href="#">The Information Of Acount</a></li>
+								<li><a href="#">The Informatiob Of Cart</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">Contact</h3>
+							<ul class="footer-links">
+								<li><a href="#"><i class="bi bi-facebook"></i>Facebook</a></li>
+								<li><a href="#"><i class="bi bi-geo-alt-fill"></i>Can Tho</a></li>
+								<li><a href="#"><i class="bi bi-telephone-fill"></i>+84999-99-99-99</a></li>
+								<li><a href="#"><i class="bi bi-envelope"></i>ldtshop@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2022 Copyright:
+                    <a class="text-white" href="#">ldtshop@gmail.com</a>
+                </div>
+                <!-- Copyright -->
+			
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+    {% endblock %}
+</body>
 </html>
+
+

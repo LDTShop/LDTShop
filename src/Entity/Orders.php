@@ -25,7 +25,7 @@ class Orders
     private $orderDate;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $deliveryDate;
 
