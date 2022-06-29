@@ -28,7 +28,7 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.date ? product.date|date('Y-m-d') : '' }}</td>
                 <td>{{ product.quantity }}</td>
-                <td>{{ product.image }}</td>
+                <td><img src="/uploads/images/{{ product.image }}" style="width:100px"/></td>
                 <td>{{ product.status ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
