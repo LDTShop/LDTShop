@@ -3,18 +3,30 @@
 {% block title %}Hello HomePageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/projectweb/ldtShop/src/Controller/HomePageController.php'|file_link(0) }}">src/Controller/HomePageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/projectweb/ldtShop/templates/home_page/index.html.twig'|file_link(0) }}">templates/home_page/index.html.twig</a></code></li>
-    </ul>
+<div class="container mt-3">
+  <h2>All Products</h2>
+  <div class="row">
+  {% for product in products %}
+      <div class="col-md-4">
+            <div class="card">
+                <img
+                src="/uploads/images/{{ product.image }}"
+                class="card-img-top"
+                alt="{{ product.name }}" style="margin: auto; width: max-content;" height="250px"/>
+                <div class="card-body">
+                <a href="{{ path('detailProduct', {'id': product.id})  }}" class="text-decoration-none">
+                <h5 class="card-title">{{ product.name }}</h5></a>
+                <h6 class="card-subtitle mb-2 text-muted"><span>&#36;</span>{{ product.price }}</h6>
+                <a href="" 
+                class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+      </div>
+    {% else %}
+            <tr>
+                <td colspan="5">No records found</td>
+            </tr>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}

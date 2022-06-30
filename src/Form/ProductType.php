@@ -17,7 +17,7 @@ class ProductType extends AbstractType
             ->add('price')
             ->add('description')
             ->add('date')
-            ->add('quantity')
+            ->add('quantity', NumberType::class)
             ->add('image', FileType::class,[
                 'data_class'=>null
             ])

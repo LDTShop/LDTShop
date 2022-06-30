@@ -37,6 +37,7 @@ class Product
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\Positive
      */
     private $date;
 
