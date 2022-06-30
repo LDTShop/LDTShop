@@ -70,7 +70,7 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $state;
+    private $status;
 
     /**
      * @ORM\OneToMany(targetEntity=Cart::class, mappedBy="username", orphanRemoval=true)
@@ -244,14 +244,14 @@ class Customer implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isState(): ?bool
+    public function isStatus(): ?bool
     {
-        return $this->state;
+        return $this->status;
     }
 
-    public function setState(bool $state): self
+    public function setStatus(bool $status): self
     {
-        $this->state = $state;
+        $this->status = $status;
 
         return $this;
     }

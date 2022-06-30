@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    {{ form_start(form) }}
+    {{ form_row(form.username, {'attr': {'class': 'form-control'}}) }}
+    {# {{ form_row(form.roles, {'attr': {'class':'form-control'}}) }} #}
+    {{ form_row(form.password.first, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.password.second, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.cusName, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.address, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.telephone, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.email, {'attr': {'class':'form-control'}}) }}
+    {{ form_row(form.date, {'attr': {'class':'form-control'}}) }}
+    {{ form_widget(form)}}
+    {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
