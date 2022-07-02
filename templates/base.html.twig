@@ -69,9 +69,10 @@
                         <a class="nav-link" href="#" style="color:black">About us</a>
                     </li>
                     <li class="nav-item">
-                        <form class="d-flex input-group w-auto" action="#" method="POST">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Search_product" required>
-                            <button class="btn btn-outline-success" name="Search_button" type="submit">Search</button>
+                        <form class="d-flex input-group w-auto" action="/search" method="GET">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
+                            value=""  required>
+                            <button class="btn btn-outline-success" type="submit" >Search</button>
                             <!-- <input type="submit" value="Search" class="btn btn-outline-secondary"> -->
                         </form>
                     </li>
