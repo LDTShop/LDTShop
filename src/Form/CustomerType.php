@@ -6,6 +6,7 @@ use App\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
@@ -36,21 +37,23 @@ class CustomerType extends AbstractType
                     'Male'=>'0',
                     'Female'=>'1'
                 ],
-                'expanded'=>true
+                // 'expanded'=>true
             ])
             ->add('address', TextType::class)
             ->add('telephone', TextType::class)
             ->add('email', EmailType::class)
-            ->add('date')
+            ->add('date', DateType::class,[
+                'widget'=>'single_text'
+            ])
             ->add('status', ChoiceType::class,[
                 'choices'=>[
                     'Active'=>'1',
                     'Inactive'=>'0'
                 ],
-                'expanded'=>true
+                // 'expanded'=>true
             ])
             ->add('save',SubmitType::class,[
-                'label'=>'Save'
+                'label'=>'Register'
             ])
         ;
     }

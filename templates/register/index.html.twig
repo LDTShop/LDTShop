@@ -4,20 +4,53 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
-    {{ form_start(form) }}
-    {{ form_row(form.username, {'attr': {'class': 'form-control'}}) }}
-    {# {{ form_row(form.roles, {'attr': {'class':'form-control'}}) }} #}
-    {{ form_row(form.password.first, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.password.second, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.cusName, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.gender) }}
-    {{ form_row(form.address, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.telephone, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.email, {'attr': {'class':'form-control'}}) }}
-    {{ form_row(form.date) }}
-    {{ form_widget(form)}}
-    {{ form_end(form) }}
+<section class="vh-50 gradient-custom">
+  <div class="container py-5 h-70">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-11 col-lg-10 col-xl-8">
+        <div class="card bg-light text-dark" style="border-radius: 1rem; border: solid 1px black;">
+          <div class="card-body p-5 text-center">
+            <h1 class="h3 mb-3 font-weight-normal">REGISTER</h1>
+            <p class="text-black-50 mb-3">Please fill in the required information to register new account!</p>
+            {{ form_start(form) }}
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.username, {'attr':{'placeholder': 'Username', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.password.first, {'attr': {'placeholder': 'Password', 'class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.password.second, {'attr': {'placeholder': 'Confirm Password', 'class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.cusName, {'attr': {'placeholder': 'Customer Name', 'class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.gender) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.address, {'attr': {'placeholder': 'Address','class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.telephone, {'attr': {'placeholder': 'Telephone','class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.email, {'attr': {'placeholder': 'Email','class':'form-control'}}) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.date) }}
+            </div>
+            <div class="form-outline form-white mb-2">
+            {{ form_widget(form.status, {'attr': {'checked': 'Active'}}) }}
+            </div>
+            <p class="small mb-3 pb-lg-2">Have an account?<a class="text-black-50" href="{{ path('app_login') }}"> Login here!</a></p>
+            {{ form_widget(form.save, {'attr': {'class':'btn btn-outline-dark btn-lg px-5'}}) }}
+            {{ form_end(form) }}
+           </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 </div>
 {% endblock %}

@@ -53,7 +53,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="/images/logo_size.jpg" alt="logo" width="120px" height="80px"/></a>
+            <a class="navbar-brand" href="{{ path('app_home_page') }}"><img src="/images/logo_size.jpg" alt="logo" width="120px" height="80px"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +66,7 @@
                         <a class="nav-link" href="#" style="color:black">Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color:black">About us</a>
+                        <a class="nav-link" href="#aboutus" style="color:black">About us</a>
                     </li>
                     <li class="nav-item">
                         <form class="d-flex input-group w-auto" action="/search" method="GET">
@@ -110,7 +110,7 @@
 				<div class="row">
 					<div class="col-md-4 col-xs-6">
 						<div class="footer">
-							<h3 class="footer-title">About Us</h3>
+							<h3 id="aboutus" class="footer-title">About Us</h3>
 							<p style="text-align:justify;">LDTShop put our continued success down to knowing
                              what consumers and businesses need and having an extensive 
                              range of the best phone for customers. LDTShop is committed
