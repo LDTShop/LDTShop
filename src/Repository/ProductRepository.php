@@ -53,6 +53,16 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findByNewProduct()
+   {
+    //SELECT * FROM `product` WHERE DATEDIFF(CURRENT_DATE(), date) <15;
+        $entity = $this->getEntityManager();
+       return $entity->createQuery('SELECT p.id, p.name, p.price, p.image
+        FROM App\Entity\Product p WHERE (CURRENT_DATE() -  p.date) < 15')
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
