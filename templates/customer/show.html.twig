@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Customer{% endblock %}
+
+{% block body %}
+    <h1>Account</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <td>{{ customer.username }}</td>
+            </tr>
+            <tr>
+                <th>CusName</th>
+                <td>{{ customer.cusName }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ customer.gender ? 'Female' : 'Male' }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ customer.address }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ customer.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ customer.email }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ customer.date ? customer.date|date('d-m-Y') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_home_page') }}">back to list</a>
+
+{% endblock %}

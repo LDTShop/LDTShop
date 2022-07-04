@@ -68,17 +68,26 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#aboutus" style="color:black">About us</a>
                     </li>
+                    {% if app.user %}
+                    {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
+                        <a class="nav-link" 
+                        href="{{ path('app_customer_account', {'username': app.user.userIdentifier}) }}"
+                         style="color:black">Your Account</a>
+                    </li>     
+                    {% endif %}
+                    {% endif %}
+                    
+                </ul>
+                <div class="navbar-nav ms-auto">
+                  <li class="nav-item">
                         <form class="d-flex input-group w-auto" action="/search" method="GET">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
                             value=""  required>
                             <button class="btn btn-outline-success" type="submit" >Search</button>
                             <!-- <input type="submit" value="Search" class="btn btn-outline-secondary"> -->
                         </form>
-                    </li>
-                </ul>
-                <div class="navbar-nav ms-auto">
-                    
+                    </li>  
                 </div>
             </div>
         </div>
