@@ -103,4 +103,15 @@ class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
+
+    /**
+     * @Route("/home/product/new", name="app_product_new")
+     */
+    public function proNewAction(ProductRepository $repo): Response
+    {
+        $proNew = $repo->findByNewProduct();
+        return $this->render('home_page/index.html.twig', [
+            'products'=>$proNew
+        ]);
+    }
 }
