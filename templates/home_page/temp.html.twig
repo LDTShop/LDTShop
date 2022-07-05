@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirm Password{% endblock %}
+
+{% block body %}
+    <h1>Confirm Password</h1>
+<div class="form-outline form-white mb-2">
+<form action="/temp" method="POST">
+<input class="form-control" type="password" name="password" value=""
+        id="inputPassword" autocomplete="current-password" placeholder="Password" required>
+        <input type="submit"></input>
+
+</form>
+</div>
+{% endblock %}
