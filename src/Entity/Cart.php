@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CartRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,26 +20,10 @@ class Cart
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="carts")
+     * @ORM\OneToOne(targetEntity=Customer::class, inversedBy="cart", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $username;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="carts")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $product;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $proQuantity;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
 
     public function getId(): ?int
     {
@@ -49,45 +35,9 @@ class Cart
         return $this->username;
     }
 
-    public function setUsername(?Customer $username): self
+    public function setUsername(Customer $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function getProduct(): ?Product
-    {
-        return $this->product;
-    }
-
-    public function setProduct(?Product $product): self
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    public function getProQuantity(): ?int
-    {
-        return $this->proQuantity;
-    }
-
-    public function setProQuantity(int $proQuantity): self
-    {
-        $this->proQuantity = $proQuantity;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
 
         return $this;
     }
