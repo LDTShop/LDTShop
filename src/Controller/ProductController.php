@@ -105,7 +105,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/home/product/new", name="app_product_new")
+     * @Route("/home/product/new", name="app_home_product_new")
      */
     public function proNewAction(ProductRepository $repo): Response
     {

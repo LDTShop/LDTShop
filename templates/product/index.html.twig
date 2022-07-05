@@ -29,10 +29,10 @@
                 <td>{{ product.date ? product.date|date('Y-m-d') : '' }}</td>
                 <td>{{ product.quantity }}</td>
                 <td><img src="/uploads/images/{{ product.image }}" style="width:100px"/></td>
-                <td>{{ product.status ? 'Yes' : 'No' }}</td>
+                <td>{{ product.status ? 'Active' : 'Inactive' }}</td>
                 <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                    <button type="button" class="btn btn-outline-secondary"><a href="{{ path('app_product_show', {'id': product.id}) }}">show</a></button>
+                    <button type="button" class="btn btn-outline-secondary"><a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a></button>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_product_new') }}">Create new</a>
+    <button type="button" class="btn btn-outline-info"><a href="{{ path('app_product_new') }}">Create new</a></button>
 {% endblock %}
