@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+{% for c in cart %}
+    <div class="container">
+{{c.product}}
+<br>
+{{c.quantity}}
+    </div>
+{% endfor %}
+{% endblock %}
