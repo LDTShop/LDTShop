@@ -16,9 +16,10 @@
                 <form class="mt-4 p-4 bg-light" method="post">
                     <div class="form-group">
                         <label for="quantity">Quantity</label>
-                        <input type="number" class="form-control" id="quantity">
+                        <input type="number" class="form-control" id="quantity" value="1">
                     </div>
-                    <button class="btn btn-warning">Add to Cart</button>
+                    <a href="{{ path('app_cart', {'id': product.id}) }}" 
+                class="btn btn-primary">Add to Cart</a>
                 </form>
             </div>
         </div>
