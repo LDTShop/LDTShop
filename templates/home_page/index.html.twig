@@ -5,6 +5,11 @@
 {% block body %}
 <div class="container mt-3">
   <h2>All Products</h2>
+  {% for message in app.flashes('info') %}
+    <div class="alert alert-success">
+    {{message}}
+    </div>
+  {% endfor %}
   <div class="row">
   {% for product in products %}
       <div class="col-md-4">
