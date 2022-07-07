@@ -18,19 +18,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/cart", name="app_show_cart")
+     * @Route("/cart", name="app_cart_page")
      */
-    public function showcartAction(CartDetailRepository $repo): Response
+    public function indexCart(): Response
+    {
+        return $this->redirectToRoute('app_login');
+    }
+    /**
+     * @Route("/cart/{username}", name="app_show_cart")
+     */
+    public function showcartAction(CartDetailRepository $crepo, Customer $user, ProductRepository $repo): Response
     {
         $user = $this->getUser();
 
         if(!$user){
             return $this->redirectToRoute('app_login');
         }else{
-            $showcart = $repo->findAll();
+            $showcart = $repo->findByCartUser($user);
             return $this->render('cart/index.html.twig', [
-            'cart'=> $showcart
+            'cart'=> $showcart,
+            'customer'=>$user
             ]);
+            // return $this->json($showcart);
         }
     }
     

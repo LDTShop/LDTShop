@@ -39,22 +39,23 @@ class CartDetailRepository extends ServiceEntityRepository
         }
     }
     /**
-        * @return CartDetail[] Returns an array of OrdersDetail objects
-        */
-        public function checkQuantity($proId, $cartId): array
-        {
-            return $this->createQueryBuilder('c')
-                ->select('Count(c.id) as count, c.quantity as quantity, c.id as id')
-                ->innerJoin('c.product', 'p')
-                ->innerJoin('c.cart','ca')
-                ->andWhere('p.id = :proId')
-                ->setParameter('proId', $proId)
-                ->andWhere('ca.id = :cartId')
-                ->setParameter('cartId', $cartId)
-                ->getQuery()
-                ->getResult()
-            ;
-        }
+     * @return CartDetail[] Returns an array of OrdersDetail objects
+     */
+    public function checkQuantity($proId, $cartId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('Count(c.id) as count, c.quantity as quantity, c.id as id')
+            ->innerJoin('c.product', 'p')
+            ->innerJoin('c.cart', 'ca')
+            ->andWhere('p.id = :proId')
+            ->setParameter('proId', $proId)
+            ->andWhere('ca.id = :cartId')
+            ->setParameter('cartId', $cartId)
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
 //    /**
 //     * @return CartDetail[] Returns an array of CartDetail objects

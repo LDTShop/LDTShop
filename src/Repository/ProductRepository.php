@@ -63,6 +63,25 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findByCartUser($user): array
+   {
+       // SELECT * FROM product 
+       // INNER JOIN cart_detail on product.id = cart_detail.id 
+       // INNER JOIN cart on cart_detail.cart_id=cart.id
+       // INNER JOIN customer on customer.id = cart.username_id
+       // WHERE customer.username = 'vana'
+       $entity = $this->getEntityManager();
+       return $entity->createQuery('
+       SELECT p.id, p.name, p.price, p.image, cus.username, cd.quantity FROM App\Entity\Product p
+,App\Entity\CartDetail cd
+,App\Entity\Cart c
+,App\Entity\Customer cus where cus.id = c.username AND p.id = cd.product AND cd.cart = c.id AND
+cus.username = :user
+       ')->setParameter('user', "$user")
+       ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
