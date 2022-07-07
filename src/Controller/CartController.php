@@ -90,6 +90,6 @@ class CartController extends AbstractController
         $entity->remove($cartd);
         $entity->flush();
 
-        return $this->redirectToRoute('app_show_cart');
+        return $this->redirectToRoute('app_home_page');
     }
 }

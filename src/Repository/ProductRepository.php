@@ -72,7 +72,7 @@ class ProductRepository extends ServiceEntityRepository
        // WHERE customer.username = 'vana'
        $entity = $this->getEntityManager();
        return $entity->createQuery('
-       SELECT p.id, p.name, p.price, p.image, cus.username, cd.quantity FROM App\Entity\Product p
+       SELECT p.name, p.price, p.image, cus.username, cd.quantity, cd.id FROM App\Entity\Product p
 ,App\Entity\CartDetail cd
 ,App\Entity\Cart c
 ,App\Entity\Customer cus where cus.id = c.username AND p.id = cd.product AND cd.cart = c.id AND
