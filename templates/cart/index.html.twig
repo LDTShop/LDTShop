@@ -15,13 +15,12 @@
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                    <h6 class="mb-0 text-muted">items</h6>
+                    {# <h6 class="mb-0 text-muted">items</h6> #}
                   </div>
+                {% set sum = 0 %}
+                {% set count = 0 %}
                 {% for c in cart %}
-                    
-                  
                   <hr class="my-4">
-
                   <div class="row mb-4 d-flex justify-content-between align-items-center">
                     <div class="col-md-2 col-lg-2 col-xl-2">
                       <img
@@ -47,18 +46,20 @@
                       </button>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">$</h6>
+                      <h6 class="mb-0">${{c.price * c.quantity}}</h6>
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                       <a href="{{ path('app_cart_delete', {'id': c.id}) }}" class="text-muted"><i class="bi bi-x-square"></i></a>
                     </div>
                   </div>
+                  {% set sum = sum + (c.price * c.quantity) %}
+                  {% set count = count + 1 %}
                 {% endfor %}
                   <hr class="my-4">
 
                   <div class="pt-5">
                     <h6 class="mb-0"><a href="{{ path('app_home_page') }}" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                    class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                   </div>
                 </div>
               </div>
@@ -69,14 +70,14 @@
 
                   <div class="d-flex justify-content-between mb-4">
                     <h5 class="text-uppercase">items</h5>
-                    <h5>$</h5>
+                    <h5>{{count}}</h5>
                   </div>
 
                   <hr class="my-4">
 
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Total price</h5>
-                    <h5>$</h5>
+                    <h5>${{sum}}</h5>
                   </div>
 
                   <button type="button" class="btn btn-dark btn-block btn-lg"
