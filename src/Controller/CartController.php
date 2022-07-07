@@ -44,7 +44,7 @@ class CartController extends AbstractController
     }
     
     /**
-     * @Route("/cart/{id}", name="app_cart")
+     * @Route("/cart/{id}/add", name="app_cart")
      */
     public function index(CartRepository $repo, $id, ManagerRegistry $reg, 
     ProductRepository $prorepo, CartDetailRepository $cartDetailrepo): Response
@@ -66,6 +66,11 @@ class CartController extends AbstractController
     
             $entity->persist($cartDetail);
             $entity->flush();
+
+            $this->addFlash(
+                'info',
+                'Add to cart successfully!'
+            );
         }else{
             $quantity = $cartd[0]['quantity'] + 1;
             $cartdId = $cartd[0]['id'];
@@ -75,8 +80,13 @@ class CartController extends AbstractController
 
             $entity->persist($cartDetail);
             $entity->flush();
+
+            $this->addFlash(
+                'info',
+                'Add to cart successfully!'
+            );
         }
-        return $this->redirectToRoute('app_show_cart');
+        return $this->redirectToRoute('app_home_page');
     }
 
     /**
