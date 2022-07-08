@@ -23,141 +23,43 @@
     {% endblock %}
 </head>
 <body>
-{# <div id="wrapper">
-		<!-- NAVBAR -->
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('app_home_page') }}"><img src="/images/logo_size.jpg" alt="logo" width="120px" height="80px"/></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home_page') }}" style="color:black">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home_product_new') }}" style="color:black">New Product</a>
-                    </li>
-                    {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_show_cart', {'username': app.user.userIdentifier}) }}" style="color:black">Cart</a>
-                    </li>
-                    {% endif %}
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_cart_page') }}" style="color:black">Cart</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aboutus" style="color:black">About us</a>
-                    </li>
-                    {% if app.user %}
-                    {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                        href="{{ path('app_customer_account', {'username': app.user.userIdentifier}) }}"
-                         style="color:black">Your Account</a>
-                    </li>
-                    {% endif %}
-                    {% endif %}
-                    
-                </ul>
-                <div class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                        <form class="d-flex input-group w-auto" action="/search" method="GET">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
-                            value=""  required>
-                            <button class="btn btn-outline-success" type="submit" >Search</button>
-                            <!-- <input type="submit" value="Search" class="btn btn-outline-secondary"> -->
-                        </form>
-                    </li>  
-                </div>
-            </div>
-        </nav>
-        <div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
-				<nav>
-					<ul class="nav">
-						<li class="Menu"><a href="?ID=sanpham" class="Menu"><i class="lnr lnr-home"></i> <span>Sản Phẩm</span></a></li>
-						<li><a href="?ID=loaisanpham" class="Menu"><i class="lnr lnr-code"></i> <span>Loại Sản Phẩm</span></a></li>
-						<li><a href="?ID=nhasanxuat" class="Menu"><i class="lnr lnr-chart-bars"></i> <span>Nhà Sản Xuất</span></a></li>
-						<li><a href="?ID=khachhang" class="Menu"><i class="lnr lnr-cog"></i> <span>Khách Hàng</span></a></li>
-						<li><a href="?ID=donhang" class="Menu"><i class="lnr lnr-alarm"></i> <span>Đơn Đặt Hàng</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-</div> #}
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light" style="border-right: solid 1px black">
+        <div class="col-auto  col-xl-2 px-sm-2 px-0 bg-light" style="box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="/images/logo_size.jpg" alt="logo" width="90px" height="70px"/>
+                    <img src="/images/logo_size.jpg" alt="logo" width="120px" height="80px"/>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
+                        <a href="/" class="align-middle px-0">
+                        <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span></a>
                     </li>
+                    <br>
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
-                            </li>
-                        </ul>
+                        <a href="#" class="px-0 align-middle">
+                        <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
                     </li>
+                    <br>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                        <a href="{{ path('app_brand_index') }}" class="px-0 align-middle">
+                        <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Brand</span></a>
                     </li>
+                    <br>
                     <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                            </li>
-                        </ul>
+                        <a href="{{ path('app_product_index') }}" class="px-0 align-middle">
+                        <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
                     </li>
+                    <br>
                     <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
-                        </ul>
+                        <a href="{{ path('app_customer') }}" class="px-0 align-middle">
+                        <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
-                </ul>
-                <hr>
-                <div class="dropdown pb-4">
+                    <br>
+                    <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">loser</span>
+                        <img src="/images/logo_size.jpg" alt="hugenerd" width="50" height="50" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1 text-black">Admin</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -166,13 +68,13 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Sign out</a></li>
                     </ul>
                 </div>
+                </ul>
+                
+                
             </div>
-        </div>
-        <div class="col py-3">
-            Content area...
         </div>
         {% block body %}{% endblock %}
     </div>
