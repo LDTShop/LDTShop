@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
-     * @Route("/customer", name="app_customer")
+     * @Route("/admin/customer", name="app_customer")
      */
     public function index(CustomerRepository $repo): Response
     {

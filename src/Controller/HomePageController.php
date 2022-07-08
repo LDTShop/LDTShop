@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Form\ChangePassType;
 use App\Repository\CustomerRepository;
 use App\Repository\ProductRepository;
@@ -71,5 +72,26 @@ class HomePageController extends AbstractController
     public function comfirmpass(): Response
     {
         return $this->render('home_page/temp.html.twig', []);
+    }
+    
+    /**
+     * @Route("/home/product_detail/{id}", name="app_product_detail", methods={"GET"})
+     */
+    public function detail(Product $product): Response
+    {
+        return $this->render('product/detail.html.twig', [
+            'product' => $product,
+        ]);
+    }
+
+    /**
+     * @Route("/home/product/new", name="app_home_product_new")
+     */
+    public function proNewAction(ProductRepository $repo): Response
+    {
+        $proNew = $repo->findByNewProduct();
+        return $this->render('home_page/index.html.twig', [
+            'products'=>$proNew
+        ]);
     }
 }

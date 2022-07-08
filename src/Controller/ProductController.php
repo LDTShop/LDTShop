@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/admin")
+ */
 class ProductController extends AbstractController
 {
     /**
@@ -94,24 +97,5 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
-    /**
-     * @Route("/home/product_detail/{id}", name="app_product_detail", methods={"GET"})
-     */
-    public function detail(Product $product): Response
-    {
-        return $this->render('product/detail.html.twig', [
-            'product' => $product,
-        ]);
-    }
-
-    /**
-     * @Route("/home/product/new", name="app_home_product_new")
-     */
-    public function proNewAction(ProductRepository $repo): Response
-    {
-        $proNew = $repo->findByNewProduct();
-        return $this->render('home_page/index.html.twig', [
-            'products'=>$proNew
-        ]);
-    }
+    
 }

@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/brand")
+ * @Route("/admin")
  */
 class BrandController extends AbstractController
 {
     /**
-     * @Route("/", name="app_brand_index", methods={"GET"})
+     * @Route("/brand/", name="app_brand_index", methods={"GET"})
      */
     public function index(BrandRepository $brandRepository): Response
     {
@@ -26,7 +26,7 @@ class BrandController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="app_brand_new", methods={"GET", "POST"})
+     * @Route("/brand/new", name="app_brand_new", methods={"GET", "POST"})
      */
     public function new(Request $request, BrandRepository $brandRepository): Response
     {
@@ -47,7 +47,7 @@ class BrandController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_brand_show", methods={"GET"})
+     * @Route("/brand/{id}", name="app_brand_show", methods={"GET"})
      */
     public function show(Brand $brand): Response
     {
@@ -57,7 +57,7 @@ class BrandController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="app_brand_edit", methods={"GET", "POST"})
+     * @Route("/brand/{id}/edit", name="app_brand_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Brand $brand, BrandRepository $brandRepository): Response
     {
@@ -77,7 +77,7 @@ class BrandController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_brand_delete", methods={"POST"})
+     * @Route("/brand/{id}", name="app_brand_delete", methods={"POST"})
      */
     public function delete(Request $request, Brand $brand, BrandRepository $brandRepository): Response
     {
