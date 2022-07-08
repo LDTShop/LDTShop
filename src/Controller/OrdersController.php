@@ -92,6 +92,16 @@ class OrdersController extends AbstractController
              );
              return $this->redirectToRoute('app_home_page');
         }
+        //delete products in cart after order
+        if($get != 0){
+            for($i = 0; $i < $get; $i++){
+                $cartdetail = $cartDRepo->findOneBy(['cart' => $cart]);
+
+                $entity->remove($cartdetail);
+                $entity->flush();
+            }
+        }
+
         return $this->redirectToRoute('app_home_page');
     }
 }
