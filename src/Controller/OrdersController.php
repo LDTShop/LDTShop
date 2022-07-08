@@ -27,6 +27,7 @@ class OrdersController extends AbstractController
         $user = $this->getUser();
         $entity = $reg->getManager();
         $cart = $cartRepo->findOneBy(['username'=>$user]);
+        $cartD = $cartDRepo->countCartDetail($cart);
 
         $curDate = new \DateTime();
         $curDate->format('H:i:s \O\n d-m-Y');
@@ -35,20 +36,27 @@ class OrdersController extends AbstractController
         $get = $cusRepo->getInfoCus($user);
 
         $address = $get[0]['address'];
-        // $cusName = $get[0]['cusName'];
-        // $customer = $get[0]['Customer'];
 
-        $order->setOrderDate($curDate);
-        $order->setPayment($getCart[0]['total']);
-        $order->setAddress($address);
-        $order->setUsername($user);
-        $order->setStatus("Packing");
+        $get = $cartD[0]['countCD'];
 
-        $entity->persist($order);
-        $entity->flush();
-
+        if($get != 0){
+            $order->setOrderDate($curDate);
+            $order->setPayment($getCart[0]['total']);
+            $order->setAddress($address);
+            $order->setUsername($user);
+            $order->setStatus("Packing");
+    
+            $entity->persist($order);
+            $entity->flush();
+        }else{
+            $this->addFlash(
+               'warn',
+               'No products to order! Please add product to cart before order!'
+            );
+            return $this->redirectToRoute('app_home_page');
+        }
         //add to orders detail
-        $cartD = $cartDRepo->countCartDetail($cart);
+        
         $get = $cartD[0]['countCD'];
         $orderId = $orderRepo->getOrderId($user);
         $getOrder = $orderId[0]['OrderId'];
@@ -78,19 +86,12 @@ class OrdersController extends AbstractController
                 $entity->flush();
             }
         }else{
-            return new Response("No product to order");
+            $this->addFlash(
+                'warn',
+                'No products to order! Please add product to cart before order!'
+             );
+             return $this->redirectToRoute('app_home_page');
         }
         return $this->redirectToRoute('app_home_page');
-    }
-    /**
-     * @Route("/test", name="RouteName")
-     */
-    public function FunctionName(CartRepository $repo, CartDetailRepository $carepo): Response
-    {
-        $user = $this->getUser();
-        $cart = $repo->findOneBy(['username'=>$user]);
-        $test = $carepo->countCartDetail($cart);
-        $n = $test[0]['countCD'];
-        return $this->json($n);
     }
 }
