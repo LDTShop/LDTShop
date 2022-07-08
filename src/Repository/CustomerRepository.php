@@ -56,6 +56,20 @@ class CustomerRepository extends ServiceEntityRepository implements PasswordUpgr
         $this->add($user, true);
     }
 
+   /**
+    * @return Customer[] Returns an array of Customer objects
+    */
+   public function getInfoCus($user): array
+   {
+       return $this->createQueryBuilder('c')
+           ->select('c.cusName as cusName, c.address as address, c.username as Customer')
+           ->where('c.id = :user')
+           ->setParameter('user', $user)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Customer[] Returns an array of Customer objects
 //     */

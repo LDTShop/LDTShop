@@ -38,7 +38,7 @@
                         <div class="mb-3">
                             Welcome {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"> Logout</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="#" role="button" data-bs-toggle="collapse" aria-expanded="false"> || <i class="bi bi-gear-fill">Administration</i></a>
+                        <a href="{{ path('app_admin') }}"> || <i class="bi bi-gear-fill">Administration</i></a>
                     {% endif %}
                         </div>
                     {% else %}

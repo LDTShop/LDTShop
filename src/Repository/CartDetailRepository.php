@@ -55,8 +55,29 @@ class CartDetailRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function countCartDetail($caId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('Count(c.id) as countCD')
+            ->innerJoin('c.cart', 'ca')
+            ->where('ca.id = :id')
+            ->setParameter('id', $caId)
+            ->getQuery()
+            ->getResult();
+    }
 
-
+    public function getProductID($value): array
+    {
+        return $this->createQueryBuilder('cd')
+            ->select('p.id as product, p.price as price, (p.price * cd.quantity) as total, cd.quantity as quantity')
+            ->innerJoin('cd.product', 'p')
+            ->innerJoin('cd.cart', 'c')
+            ->where('cd.cart = :id')
+            ->setParameter('id',$value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return CartDetail[] Returns an array of CartDetail objects
 //     */

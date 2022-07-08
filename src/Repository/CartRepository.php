@@ -39,6 +39,25 @@ class CartRepository extends ServiceEntityRepository
         }
     }
 
+   /**
+    * @return Cart[] Returns an array of Cart objects
+    */
+   public function totalPrice($user): array
+   {
+        $entity = $this->getEntityManager();
+        return $entity->createQuery('
+        SELECT Sum(p.price * cd.quantity) as total FROM App\Entity\Product p,
+        App\Entity\CartDetail cd,
+        App\Entity\Cart c,
+        App\Entity\Customer cus where cus.id = c.username AND p.id = cd.product AND cd.cart = c.id AND
+        c.username = :user
+        ')
+        ->setParameter('user', $user)
+        // ->setParameter('cid', $cid)
+        ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */
