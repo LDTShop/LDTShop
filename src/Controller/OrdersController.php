@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Orders;
 use App\Entity\OrdersDetail;
+use App\Form\OrdersType;
 use App\Repository\CartDetailRepository;
 use App\Repository\CartRepository;
 use App\Repository\CustomerRepository;
+use App\Repository\OrdersDetailRepository;
 use App\Repository\OrdersRepository;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -103,5 +106,57 @@ class OrdersController extends AbstractController
         }
 
         return $this->redirectToRoute('app_home_page');
+    }
+    /**
+     * @Route("/admin/orders", name="app_orders_index")
+     */
+    public function index(OrdersRepository $repo): Response
+    {
+        return $this->render('orders/index.html.twig', [
+            'orders'=>$repo->findAll()
+        ]);
+    }
+    /**
+     * @Route("/admin/orders/detail/{id}", name="app_orders_detail")
+     */
+    public function detail(OrdersDetailRepository $repo, $id): Response
+    {
+        $orderD = $repo->findByOrdersDetail($id);
+        return $this->render('orders/detail.html.twig', [
+            'orderD'=>$orderD
+        ]);
+    }
+    /**
+     * @Route("/admin/orders/{id}/edit", name="app_orders_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Orders $orders, OrdersRepository $repo, $id, ManagerRegistry $reg): Response
+    {
+        
+        $form = $this->createForm(OrdersType::class, $orders);
+        $form->handleRequest($request);
+        $entity = $reg->getManager();
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $repo->add($orders, true);
+            $status = $repo->getStatusOrders($id);
+            $getStatus = $status[0]['Status'];
+            if($getStatus == "Delivered"){
+                
+                $deliDate = new \DateTime();
+                $deliDate->format('H:i:s \O\n d-m-Y');
+
+                $orders->setDeliveryDate($deliDate);
+
+                $entity->persist($orders);
+                $entity->flush();
+            }
+
+            return $this->redirectToRoute('app_orders_index', [], Response::HTTP_SEE_OTHER);
+        }
+        
+        return $this->renderForm('orders/edit.html.twig', [
+            'orders' => $orders,
+            'form' => $form,
+        ]);
     }
 }

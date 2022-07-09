@@ -53,6 +53,16 @@ class OrdersRepository extends ServiceEntityRepository
            ->getResult()
        ;
    }
+    public function getStatusOrders($value): array
+    {
+        return $this->createQueryBuilder('o')
+            ->select('o.status as Status')
+            ->where('o.id = :id')
+            ->setParameter('id',$value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Orders[] Returns an array of Orders objects

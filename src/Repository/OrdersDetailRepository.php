@@ -39,6 +39,22 @@ class OrdersDetailRepository extends ServiceEntityRepository
         }
     }
 
+   /**
+    * @return OrdersDetail[] Returns an array of OrdersDetail objects
+    */
+   public function findByOrdersDetail($value): array
+   {
+        $entity = $this->getEntityManager();
+       return $entity->createQuery('
+       SELECT od.id, od.proQuantity, od.price, od.total, p.name, o.id as orderId FROM
+       App\Entity\OrdersDetail od,
+       App\Entity\Product p,
+       App\Entity\Orders o WHERE o.id = od.orderId AND od.productId = p.id AND od.orderId = :id
+       ')->setParameter('id', $value)
+           
+           ->getResult()
+       ;
+   }
 //    /**
 //     * @return OrdersDetail[] Returns an array of OrdersDetail objects
 //     */
