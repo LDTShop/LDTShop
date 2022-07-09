@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Customer;
 use App\Form\CustomerType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,15 +17,17 @@ class RegisterController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function registerAction(Request $req, 
+    public function registerAction(Request $req,
     UserPasswordHasherInterface $hasher, ManagerRegistry $reg): Response
     {
         $user = new Customer();
+        $cart = new Cart();
+        
         $form = $this->createForm(CustomerType::class, $user);
         $form->handleRequest($req);
 
         $entity = $reg->getManager();
-
+        
         if($form->isSubmitted() && $form->isValid()){
             $user->setPassword($hasher->hashPassword($user, $form->get('password')->getData()));
             $user->setRoles(['ROLE_USER']);
@@ -32,6 +35,11 @@ class RegisterController extends AbstractController
             $entity->persist($user);
             $entity->flush();
 
+            $cart->setUsername($user);
+
+            $entity->persist($cart);
+            $entity->flush();
+            
             return $this->redirectToRoute('app_home_page');
         }
 
