@@ -104,7 +104,10 @@ class OrdersController extends AbstractController
                 $entity->flush();
             }
         }
-
+        $this->addFlash(
+            'success',
+            'Order successfully!'
+         );
         return $this->redirectToRoute('app_home_page');
     }
     /**

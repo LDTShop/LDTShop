@@ -40,7 +40,10 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ product.image }}</td>
+                <td><img
+                src="/uploads/images/{{ product.image }}"
+                class="card-img-top"
+                alt="{{ product.name }}" style="margin: auto; width: max-content;" height="250px"/></td>
             </tr>
             <tr>
                 <th>Status</th>

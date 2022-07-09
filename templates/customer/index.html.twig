@@ -16,8 +16,8 @@
         <thead>
             <tr>
                 <th>Id</th>
-                {# <th>Username</th>
-                <th>Roles</th>
+                <th>Username</th>
+                {# <th>Roles</th>
                 <th>Password</th> #}
                 <th>CusName</th>
                 <th>Gender</th>
@@ -33,7 +33,7 @@
         {% for customer in customers %}
             <tr>
                 <td>{{ customer.id }}</td>
-                {# <td>{{ customer.username }}</td> #}
+                <td>{{ customer.username }}</td>
                 {# <td>{{ customer.roles ? customer.roles|json_encode : '' }}</td> #}
                 {# <td>{{ customer.password }}</td> #}
                 <td>{{ customer.cusName }}</td>
